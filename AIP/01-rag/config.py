@@ -33,7 +33,29 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 # ---- Embedding model ----
 # Turns text into numbers (a vector). Local + free + small.
 # First run downloads ~90MB, after that it loads from cache.
-EMBED_MODEL = os.getenv("EMBED_MODEL", "all-MiniLM-L6-v2")
+_EMBED_NAME = os.getenv("EMBED_MODEL", "all-MiniLM-L6-v2")
+
+
+def _resolve_embed_model(name):
+    """Return a loadable model id.
+
+    Normally we'd just pass the name and let HuggingFace find it in its cache. But this
+    machine's cache got corrupted (a half-finished download whose 'refs/main' points at
+    a snapshot missing the weights), so loading BY NAME fails even though a complete copy
+    sits in another snapshot folder. So: scan the cache for a snapshot that actually has
+    the weights and return its path; otherwise fall back to the name (lets a fresh
+    download happen on first run).
+    """
+    repo = "models--sentence-transformers--" + name.split("/")[-1]
+    base = pathlib.Path.home() / ".cache" / "huggingface" / "hub" / repo / "snapshots"
+    if base.is_dir():
+        for snap in base.iterdir():
+            if (snap / "model.safetensors").exists() or (snap / "pytorch_model.bin").exists():
+                return str(snap)
+    return name
+
+
+EMBED_MODEL = _resolve_embed_model(_EMBED_NAME)
 
 # ---- Paths ----
 BASE_DIR = pathlib.Path(__file__).parent
