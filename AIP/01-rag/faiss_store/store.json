@@ -1,0 +1,18 @@
+{
+  "chunks": [
+    "ZephyrPay Refund and Support Policy (Internal Document v3.2)\n\nZephyrPay is a fictional digital wallet used only for this RAG demo. Nothing here is real.\n\n1. Refund window\n   Customers can request a refund within 14 calendar days of a transaction.\n   Refunds for \"ZephyrGold\" premium subscriptions are allowed only within 7 days.\n   After the window closes, refunds require manager approval (code MGR-APPROVE).\n\n2. Refund processing time\n   Standard refunds are processed within 3 to 5 business days.\n",
+    " processing time\n   Standard refunds are processed within 3 to 5 business days.\n   Refunds to international cards take 7 to 10 business days due to network settlement.\n\n3. Failed transactions\n   If money is debited but the transaction failed, it is auto-reversed within 48 hours.\n   If not reversed in 48 hours, the customer must raise ticket type \"AUTO-REVERSAL-MISS\".\n\n4. Support hours\n   Live chat support runs 6 AM to 11 PM IST, seven days a week.\n   Phone support runs 9 AM to 6 PM IST on busine",
+    "o 11 PM IST, seven days a week.\n   Phone support runs 9 AM to 6 PM IST on business days only.\n   Email support has a 24-hour first-response SLA.\n\n5. Account limits\n   A new unverified account has a wallet limit of 10,000 rupees.\n   After KYC verification, the limit increases to 200,000 rupees.\n   Daily transfer limit for verified accounts is 100,000 rupees.\n"
+  ],
+  "metadata": [
+    {
+      "source": "zephyrpay_policies.txt"
+    },
+    {
+      "source": "zephyrpay_policies.txt"
+    },
+    {
+      "source": "zephyrpay_policies.txt"
+    }
+  ]
+}

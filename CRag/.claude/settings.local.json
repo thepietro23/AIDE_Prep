@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./venv/Scripts/python -c ':*)",
+      "Bash(find \"c:/AAA/Personal/AIDE/CRag/models/all-MiniLM-L6-v2\" -name \"*.safetensors\" -exec ls -lh {} \\\\;)",
+      "Bash(python -m json.tool)"
+    ]
+  }
+}

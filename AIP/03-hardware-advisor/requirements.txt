@@ -1,0 +1,10 @@
+sentence-transformers   # text -> embeddings (vectors). Local + free (Groq has no embeddings).
+faiss-cpu               # vector database / similarity search (Facebook AI)
+numpy                   # arrays/math for handling embeddings
+python-dotenv           # load secrets (GROQ_API_KEY) from .env
+groq                    # official Groq cloud LLM client (fast, free tier)
+requests                # HTTP: Ollama API + live price fetch
+beautifulsoup4          # parse HTML when scraping live prices
+lxml                    # fast HTML parser backend for BeautifulSoup
+streamlit               # optional web UI (ui.py)
+truststore              # use the OS cert store (fixes SSL behind a corporate proxy)

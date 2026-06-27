@@ -1,0 +1,59 @@
+# ===== Secrets / env files (NEVER commit) =====
+.env
+.env.*
+**/.env
+**/.env.*
+*.env
+
+# ===== Python virtual environments (anywhere) =====
+venv/
+.venv/
+env/
+ENV/
+envs/
+**/venv/
+**/.venv/
+**/env/
+**/ENV/
+**/envs/
+
+# ===== Python cache =====
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# ===== ML models / large binaries (GitHub 100MB limit) =====
+models/
+**/models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+*.gguf
+*.h5
+*.ckpt
+*.pkl
+*.joblib
+
+# ===== MLflow / experiment tracking artifacts =====
+mlruns/
+**/mlruns/
+mlartifacts/
+**/mlartifacts/
+
+# ===== IDE / editor =====
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ===== OS junk =====
+.DS_Store
+Thumbs.db
+
+# ===== Agents notes (private) =====
+Agents/Notes

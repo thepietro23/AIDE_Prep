@@ -1,0 +1,416 @@
+{
+  "texts": [
+    "NVIDIA RTX 3060 12GB is a entry-tier gpu. Good for: ai-inference-small, general, gaming, learning. Specs: vram_gb=12, memory_type=GDDR6, tdp_w=170, architecture=Ampere, cuda=True. Price: approx $290 (~Rs 24,500). Cheapest sane entry into local AI. Runs 7B LLMs in 4-bit, Stable Diffusion, learning. CUDA works everywhere. Watch out: 12GB caps you at ~7B models and small fine-tunes. No headroom for 13B+.",
+    "NVIDIA RTX 4060 Ti 16GB is a budget-tier gpu. Good for: ai-inference, fine-tuning-small, general, gaming. Specs: vram_gb=16, memory_type=GDDR6, tdp_w=165, architecture=Ada Lovelace, cuda=True. Price: approx $400 (~Rs 34,000). Best value NEW card for small local AI in 2026. 16GB runs 7B at FP16 / 13B in 4-bit, low power. Watch out: Narrow 128-bit memory bus -> slower than its number suggests for big batches.",
+    "NVIDIA RTX 3090 24GB (used) is a value-king-tier gpu. Good for: ai-inference, fine-tuning, general, gaming. Specs: vram_gb=24, memory_type=GDDR6X, tdp_w=350, architecture=Ampere, cuda=True. Price: approx $700 (~Rs 59,500). The value king of local AI in 2026: 24GB VRAM for ~$700 used. Runs 13B at FP16, 34B in 4-bit, QLoRA fine-tuning. Watch out: Used -> check warranty/condition. High 350W power draw, needs a strong PSU (750W+).",
+    "NVIDIA RTX 4090 24GB is a high-tier gpu. Good for: ai-inference, fine-tuning, training-small, general, gaming. Specs: vram_gb=24, memory_type=GDDR6X, tdp_w=450, architecture=Ada Lovelace, cuda=True. Price: approx $1,700 (~Rs 144,500). Fastest 24GB consumer card. Same VRAM as 3090 but much faster compute -> serious fine-tuning + fast inference. Watch out: Expensive and power-hungry (450W). If you only need the VRAM, a used 3090 is far cheaper.",
+    "NVIDIA RTX 5090 32GB is a flagship-tier gpu. Good for: ai-inference, fine-tuning, training-small, general, gaming. Specs: vram_gb=32, memory_type=GDDR7, tdp_w=575, architecture=Blackwell, cuda=True. Price: approx $2,200 (~Rs 187,000). Best consumer GPU for AI in 2026. 32GB GDDR7 runs 7B at full FP16, QLoRA on 13B-34B, all Stable Diffusion/ComfyUI. Watch out: 575W TDP needs an 1000W+ PSU and good cooling. Premium price.",
+    "NVIDIA H100 80GB (enterprise) is a enterprise-tier gpu. Good for: training, large-inference, production. Specs: vram_gb=80, memory_type=HBM3, tdp_w=700, architecture=Hopper, cuda=True. Price: approx $28,000 (~Rs 2,380,000). Production-standard data-center GPU for large-scale training/inference. 80GB HBM3. Watch out: Buying makes sense only at scale. For most projects, RENT it on the cloud instead (see cloud options).",
+    "NVIDIA B200 (Blackwell, enterprise) is a enterprise-tier gpu. Good for: training, large-inference, production, long-context. Specs: vram_gb=192, memory_type=HBM3e, tdp_w=1000, architecture=Blackwell, cuda=True. Price: approx $40,000 (~Rs 3,400,000). Newest Blackwell data-center GPU, tuned for LLM training + long-context. Best raw performance available. Watch out: Enterprise-only, extreme cost + power. Rent via cloud unless you run a data center.",
+    "AMD Ryzen 5 7600 is a budget-tier cpu. Good for: general, ai-host, gaming. Specs: cores=6, threads=12, socket=AM5, tdp_w=65. Price: approx $200 (~Rs 17,000). Plenty for feeding a single GPU in an AI/dev box, and for general use + gaming. Low power. Watch out: 6 cores is light for heavy CPU data-preprocessing or multi-GPU rigs.",
+    "AMD Ryzen 7 7700X is a mid-tier cpu. Good for: general, ai-host, content-creation, gaming. Specs: cores=8, threads=16, socket=AM5, tdp_w=105. Price: approx $300 (~Rs 25,500). Sweet spot for a serious AI workstation: enough cores for data prep + dataloading without bottlenecking the GPU. Watch out: Overkill for a pure inference box where the GPU does everything.",
+    "AMD Ryzen 9 7950X is a high-tier cpu. Good for: general, ai-host, data-preprocessing, multi-gpu. Specs: cores=16, threads=32, socket=AM5, tdp_w=170. Price: approx $550 (~Rs 46,750). Heavy CPU preprocessing, multi-GPU feeding, video work. 16 cores chew through dataloaders. Watch out: Expensive + hot. Single-GPU inference rigs won't use all these cores.",
+    "32GB DDR5-6000 (2x16GB) is a mid-tier ram. Good for: general, ai-host, gaming. Specs: capacity_gb=32, type=DDR5, speed=6000. Price: approx $110 (~Rs 9,350). Baseline for an AI workstation. Rule of thumb: system RAM >= 2x your GPU VRAM. Watch out: If you load big datasets in RAM or run CPU-offload for huge models, jump to 64GB+.",
+    "64GB DDR5-6000 (2x32GB) is a high-tier ram. Good for: ai-host, data-preprocessing, large-models-cpu-offload. Specs: capacity_gb=64, type=DDR5, speed=6000. Price: approx $210 (~Rs 17,850). For 24GB+ GPUs, big datasets, or running large models partly on CPU (offload). Comfortable headroom. Watch out: Diminishing returns for pure inference unless you offload to CPU.",
+    "750W 80+ Gold PSU is a mid-tier psu. Good for: single-gpu-up-to-350w. Specs: watts=750, rating=80+ Gold. Price: approx $100 (~Rs 8,500). Enough for a single 3090/4080-class GPU (<=350W) + a mid CPU. Headroom rule: PSU >= 1.5x total component draw. Watch out: Not enough for a 4090 (450W) or 5090 (575W) build.",
+    "1000W 80+ Gold PSU is a high-tier psu. Good for: single-gpu-450w-plus, high-end. Specs: watts=1000, rating=80+ Gold. Price: approx $170 (~Rs 14,450). Required for RTX 4090 (450W) or 5090 (575W) builds with headroom. Safe for one big GPU + strong CPU. Watch out: Overkill (wasted money) for an entry/budget single-GPU build.",
+    "RTX 4090 24GB (cloud, RunPod-class) is a value-tier cloud-gpu. Good for: ai-inference, fine-tuning, burst-training. Specs: vram_gb=24, provider_class=community-cloud. Price: approx $0.69/hour (cloud rental). Rent a 4090 by the hour. Great when you need power occasionally and don't want to buy. ~$0.69/hr. Watch out: If you run >~8 hrs/day every day, buying may beat renting within months. Do the math (see local_vs_cloud).",
+    "A100 80GB (cloud) is a pro-tier cloud-gpu. Good for: fine-tuning, training, large-inference. Specs: vram_gb=80, provider_class=secure-cloud. Price: approx $1.6/hour (cloud rental). 80GB for big fine-tunes / mid training without owning data-center hardware. ~$1.6/hr. Watch out: Costs add up fast for long runs. Use spot/community pricing and checkpoint often.",
+    "H100 80GB (cloud) is a enterprise-tier cloud-gpu. Good for: training, large-inference, production. Specs: vram_gb=80, provider_class=secure-cloud. Price: approx $2.99/hour (cloud rental). Production-grade training power on demand. ~$2.99/hr. The sane way to touch H100s for most teams. Watch out: Expensive for idle time. Only spin up for active training; tear down immediately after.",
+    "# Budget tiers \u2014 match the build to the wallet, not to hype\n\nInspired by tiered build guides (like Logical Increments): instead of one \"best\" answer,\ngive the right answer for each budget. The goal is REALISTIC and REASONABLE, never\n\"buy the most expensive thing\".\n\nAll prices are approximate full-system (GPU + CPU + RAM + PSU + board + storage + case),\nUSD, 2026. Treat as ballparks; the live price fetch refines individual parts.\n\n## Tier 1 \u2014 Entry / Learning ($700-1000)\n- GPU: RTX 3060 12GB (or used 3060)\n- CPU: Ryzen 5 7600 \u00b7 RAM: 32GB DDR5 \u00b7 PSU: 750W\n- Can do: 7B LLMs in 4-bit, Stable Diffusion, learning RAG/fine-tuning basics, general use + gaming.\n- Who: students, first AI box, \"I want ",
+    " 4-bit, Stable Diffusion, learning RAG/fine-tuning basics, general use + gaming.\n- Who: students, first AI box, \"I want to learn without burning money\".\n\n## Tier 2 \u2014 Value sweet spot ($1100-1500)  \u2b50 best bang-for-buck\n- GPU: **used RTX 3090 24GB** (the value king) or new RTX 4060 Ti 16GB\n- CPU: Ryzen 7 7700X \u00b7 RAM: 32-64GB DDR5 \u00b7 PSU: 750W (3090 needs the full 750W)\n- Can do: 13B FP16, 34B in 4-bit, QLoRA fine-tuning, fast Stable Diffusion.\n- Who: serious hobbyist / indie dev / real side projects. Most people should stop here.\n\n## Tier 3 \u2014 High end ($2000-3500)\n- GPU: RTX 4090 24GB (speed) or RTX 5090 32GB (VRAM + newest)\n- CPU: Ryzen 9 7950X \u00b7 RAM: 64GB DDR5 \u00b7 PSU: 1000W\n- Can do: fast fine",
+    "090 24GB (speed) or RTX 5090 32GB (VRAM + newest)\n- CPU: Ryzen 9 7950X \u00b7 RAM: 64GB DDR5 \u00b7 PSU: 1000W\n- Can do: fast fine-tuning, small training runs, heavy Stable Diffusion/video, pro workloads.\n- Who: professionals, startups prototyping, content creators.\n\n## Tier 4 \u2014 Don't buy, RENT (enterprise)\n- Need H100 / A100 / B200 (80GB+)? Buying = $25k-40k PER CARD plus a server.\n- For 99% of projects this is the WRONG move. Rent by the hour instead (see local_vs_cloud).\n- Buy only if you have constant, year-round, multi-GPU demand.\n\n## The reasonableness rule\n\nIf a recommendation pushes you a tier above what your stated workload needs, that is a\nred flag. More VRAM than your model needs is wasted ",
+    " pushes you a tier above what your stated workload needs, that is a\nred flag. More VRAM than your model needs is wasted money. The best build is the\nCHEAPEST one that comfortably fits your actual workload + a little headroom.\n",
+    "# Compatibility & \"will it actually work\" rules\n\nInspired by PCPartPicker's compatibility checks. A recommendation is useless if the parts\ndon't physically work together. These are the rules the advisor must respect.\n\n## Power supply (PSU) sizing\n- Rule: PSU wattage >= 1.5x the sum of GPU TDP + CPU TDP (headroom for spikes + the rest).\n- A single GPU up to ~350W (e.g. RTX 3090 @ 350W) + a mid CPU -> **750W** PSU minimum.\n- RTX 4090 (450W) or RTX 5090 (575W) -> **1000W** PSU minimum.\n- Cheaping out on the PSU causes random crashes under load. Never undersize it.\n\n## System RAM vs GPU VRAM\n- Rule of thumb: system RAM >= 2x GPU VRAM.\n- 24GB GPU -> at least 48-64GB system RAM is comfortable (32G",
+    "AM vs GPU VRAM\n- Rule of thumb: system RAM >= 2x GPU VRAM.\n- 24GB GPU -> at least 48-64GB system RAM is comfortable (32GB is the floor).\n- If you offload large models partly to CPU, you need even MORE system RAM.\n\n## CPU should not bottleneck the GPU (but don't overspend)\n- A single-GPU inference box is fine with a 6-8 core CPU (Ryzen 5/7).\n- Heavy data preprocessing or multi-GPU rigs want 12-16 cores (Ryzen 9).\n- Spending big on CPU for a pure-inference box is wasted money.\n\n## CUDA / software reality\n- NVIDIA + CUDA is the default for AI in 2026. PyTorch, TensorFlow, vLLM, bitsandbytes,\n  TensorRT-LLM all target CUDA first.\n- AMD (ROCm) and Apple Silicon (MPS) work for inference but have r",
+    ", bitsandbytes,\n  TensorRT-LLM all target CUDA first.\n- AMD (ROCm) and Apple Silicon (MPS) work for inference but have rougher tooling and less\n  library support. For a smooth experience, recommend NVIDIA unless the user insists.\n\n## Physical fit (quick checks)\n- Big GPUs (4090/5090) are long + 3-slot thick: check case clearance.\n- High-TDP builds need good airflow/cooling, not just a big PSU.\n\n## The compatibility checklist the advisor should output\n1. PSU watts >= 1.5 x (GPU TDP + CPU TDP)?\n2. System RAM >= 2x GPU VRAM (and >= 32GB)?\n3. CPU core count matched to workload (not under, not wastefully over)?\n4. NVIDIA/CUDA unless the user explicitly wants AMD/Apple?\n5. Does the chosen GPU's VR",
+    "(not under, not wastefully over)?\n4. NVIDIA/CUDA unless the user explicitly wants AMD/Apple?\n5. Does the chosen GPU's VRAM actually fit the user's target model? (see vram_requirements)\n",
+    "# Local (buy) vs Cloud (rent) \u2014 the break-even math\n\nThe most money-saving decision. Don't buy a GPU you'll use 2 hours a week, and don't\nrent for 10 hours a day if you'll do it for a year. Decide with numbers.\n\n## The simple break-even formula\n\n    break_even_hours = price_to_buy_card / cloud_price_per_hour\n\nThen:\n\n    hours_you_will_actually_use_per_month  ->  hours over the card's ~2-3 year life\n    if total_lifetime_hours > break_even_hours  ->  BUYING is cheaper\n    else                                        ->  RENTING is cheaper\n\n### Worked example\n- Used RTX 3090: ~$700 to buy.\n- Cloud RTX 4090-class: ~$0.69/hour.\n- Break-even = 700 / 0.69 \u2248 **1015 hours**.\n- If you'll use the GPU m",
+    "~$700 to buy.\n- Cloud RTX 4090-class: ~$0.69/hour.\n- Break-even = 700 / 0.69 \u2248 **1015 hours**.\n- If you'll use the GPU more than ~1000 hours total (e.g. 1 hr/day for ~3 years, or a\n  few heavy months), BUYING wins. For occasional bursts, RENT.\n\n(Buying also adds electricity + the rest of the PC; renting adds data egress + setup time.\nKeep it simple: use the formula as the first filter, then adjust.)\n\n## When CLOUD clearly wins\n- You need an 80GB+ GPU (H100/A100/B200) \u2014 buying is $25k-40k; rent at ~$1.6-3/hr.\n- Spiky workload: a few big training runs, then nothing for weeks.\n- You want the newest GPU without committing capital.\n- You're just learning / prototyping.\n\n## When LOCAL (buying) cle",
+    "\n- You want the newest GPU without committing capital.\n- You're just learning / prototyping.\n\n## When LOCAL (buying) clearly wins\n- Steady daily use (inference service, constant experiments).\n- Privacy/data can't leave your machine.\n- You hate per-hour billing anxiety and want a fixed cost.\n- A 12-24GB consumer card covers your models (most hobby/indie cases).\n\n## Cloud cost-control tips\n- Use community/spot pricing, checkpoint often, and TEAR DOWN the instance the moment a\n  run finishes. Idle cloud GPUs are where money silently dies.\n\n## Takeaway\nSmall/occasional -> rent. Steady + fits a consumer card -> buy. Need 80GB+ -> rent\nunless you're literally running a data center.\n",
+    " Steady + fits a consumer card -> buy. Need 80GB+ -> rent\nunless you're literally running a data center.\n",
+    "# How much VRAM does an AI workload actually need?\n\nThis is the single most important question for AI hardware. VRAM (the memory ON the\nGPU) decides which models you can run at all. Compute speed only decides how fast.\n\n## Rule of thumb for Large Language Models (LLMs)\n\nMemory needed scales with model size (parameters) and precision.\n\n| Model size | Full precision (FP16) | 8-bit | 4-bit (QLoRA / GGUF) |\n|------------|-----------------------|-------|----------------------|\n| 7B         | ~14 GB                | ~8 GB | ~5-6 GB              |\n| 13B        | ~26 GB                | ~14 GB| ~9-10 GB             |\n| 34B        | ~68 GB                | ~36 GB| ~20 GB               |\n| 70B        ",
+    "    | ~14 GB| ~9-10 GB             |\n| 34B        | ~68 GB                | ~36 GB| ~20 GB               |\n| 70B        | ~140 GB               | ~75 GB| ~40 GB               |\n\nInference (just running the model) needs roughly the numbers above plus a little for\nthe context/KV-cache. Longer context = more memory.\n\n## Fine-tuning needs MORE than inference\n\nTraining/fine-tuning also stores gradients and optimizer states, so full fine-tuning\ncan need 3-4x the inference memory. This is why almost nobody full-fine-tunes at home.\n\n**QLoRA** is the trick that makes fine-tuning affordable: it loads the model in 4-bit\nand only trains small adapter layers. A 13B model can be QLoRA-fine-tuned on a sing",
+    "ordable: it loads the model in 4-bit\nand only trains small adapter layers. A 13B model can be QLoRA-fine-tuned on a single\n24GB GPU (e.g. RTX 3090/4090). A 7B QLoRA fits in ~12-16GB.\n\n## Practical mapping (what to buy for what)\n\n- **Learning / 7B inference in 4-bit:** 12 GB is enough (RTX 3060 12GB).\n- **Comfortable 7B FP16 or 13B in 4-bit:** 16 GB (RTX 4060 Ti 16GB).\n- **13B FP16, 34B in 4-bit, QLoRA fine-tuning:** 24 GB (used RTX 3090 = best value, or 4090 for speed).\n- **Headroom + newest features, 32GB:** RTX 5090.\n- **70B models or real training:** 80GB+ (H100/A100) \u2014 rent on the cloud, don't buy.\n\n## Key takeaway\n\nPick the GPU by the VRAM your target model needs FIRST. Only then compar",
+    "rent on the cloud, don't buy.\n\n## Key takeaway\n\nPick the GPU by the VRAM your target model needs FIRST. Only then compare speed and\nprice. A cheaper card with enough VRAM beats an expensive card that can't fit the model.\n"
+  ],
+  "metadata": [
+    {
+      "type": "catalog",
+      "id": "rtx-3060-12gb",
+      "name": "NVIDIA RTX 3060 12GB",
+      "category": "gpu",
+      "tier": "entry",
+      "use_cases": [
+        "ai-inference-small",
+        "general",
+        "gaming",
+        "learning"
+      ],
+      "vram_gb": 12,
+      "price_usd": 290,
+      "price_usd_per_hour": null,
+      "price_inr": 24500,
+      "price_live": false,
+      "source": "hardware_catalog.json"
+    },
+    {
+      "type": "catalog",
+      "id": "rtx-4060ti-16gb",
+      "name": "NVIDIA RTX 4060 Ti 16GB",
+      "category": "gpu",
+      "tier": "budget",
+      "use_cases": [
+        "ai-inference",
+        "fine-tuning-small",
+        "general",
+        "gaming"
+      ],
+      "vram_gb": 16,
+      "price_usd": 400,
+      "price_usd_per_hour": null,
+      "price_inr": 34000,
+      "price_live": false,
+      "source": "hardware_catalog.json"
+    },
+    {
+      "type": "catalog",
+      "id": "rtx-3090-24gb-used",
+      "name": "NVIDIA RTX 3090 24GB (used)",
+      "category": "gpu",
+      "tier": "value-king",
+      "use_cases": [
+        "ai-inference",
+        "fine-tuning",
+        "general",
+        "gaming"
+      ],
+      "vram_gb": 24,
+      "price_usd": 700,
+      "price_usd_per_hour": null,
+      "price_inr": 59500,
+      "price_live": false,
+      "source": "hardware_catalog.json"
+    },
+    {
+      "type": "catalog",
+      "id": "rtx-4090-24gb",
+      "name": "NVIDIA RTX 4090 24GB",
+      "category": "gpu",
+      "tier": "high",
+      "use_cases": [
+        "ai-inference",
+        "fine-tuning",
+        "training-small",
+        "general",
+        "gaming"
+      ],
+      "vram_gb": 24,
+      "price_usd": 1700,
+      "price_usd_per_hour": null,
+      "price_inr": 144500,
+      "price_live": false,
+      "source": "hardware_catalog.json"
+    },
+    {
+      "type": "catalog",
+      "id": "rtx-5090-32gb",
+      "name": "NVIDIA RTX 5090 32GB",
+      "category": "gpu",
+      "tier": "flagship",
+      "use_cases": [
+        "ai-inference",
+        "fine-tuning",
+        "training-small",
+        "general",
+        "gaming"
+      ],
+      "vram_gb": 32,
+      "price_usd": 2200,
+      "price_usd_per_hour": null,
+      "price_inr": 187000,
+      "price_live": false,
+      "source": "hardware_catalog.json"
+    },
+    {
+      "type": "catalog",
+      "id": "h100-80gb",
+      "name": "NVIDIA H100 80GB (enterprise)",
+      "category": "gpu",
+      "tier": "enterprise",
+      "use_cases": [
+        "training",
+        "large-inference",
+        "production"
+      ],
+      "vram_gb": 80,
+      "price_usd": 28000,
+      "price_usd_per_hour": null,
+      "price_inr": 2380000,
+      "price_live": false,
+      "source": "hardware_catalog.json"
+    },
+    {
+      "type": "catalog",
+      "id": "b200-enterprise",
+      "name": "NVIDIA B200 (Blackwell, enterprise)",
+      "category": "gpu",
+      "tier": "enterprise",
+      "use_cases": [
+        "training",
+        "large-inference",
+        "production",
+        "long-context"
+      ],
+      "vram_gb": 192,
+      "price_usd": 40000,
+      "price_usd_per_hour": null,
+      "price_inr": 3400000,
+      "price_live": false,
+      "source": "hardware_catalog.json"
+    },
+    {
+      "type": "catalog",
+      "id": "ryzen5-7600",
+      "name": "AMD Ryzen 5 7600",
+      "category": "cpu",
+      "tier": "budget",
+      "use_cases": [
+        "general",
+        "ai-host",
+        "gaming"
+      ],
+      "vram_gb": null,
+      "price_usd": 200,
+      "price_usd_per_hour": null,
+      "price_inr": 17000,
+      "price_live": false,
+      "source": "hardware_catalog.json"
+    },
+    {
+      "type": "catalog",
+      "id": "ryzen7-7700x",
+      "name": "AMD Ryzen 7 7700X",
+      "category": "cpu",
+      "tier": "mid",
+      "use_cases": [
+        "general",
+        "ai-host",
+        "content-creation",
+        "gaming"
+      ],
+      "vram_gb": null,
+      "price_usd": 300,
+      "price_usd_per_hour": null,
+      "price_inr": 25500,
+      "price_live": false,
+      "source": "hardware_catalog.json"
+    },
+    {
+      "type": "catalog",
+      "id": "ryzen9-7950x",
+      "name": "AMD Ryzen 9 7950X",
+      "category": "cpu",
+      "tier": "high",
+      "use_cases": [
+        "general",
+        "ai-host",
+        "data-preprocessing",
+        "multi-gpu"
+      ],
+      "vram_gb": null,
+      "price_usd": 550,
+      "price_usd_per_hour": null,
+      "price_inr": 46750,
+      "price_live": false,
+      "source": "hardware_catalog.json"
+    },
+    {
+      "type": "catalog",
+      "id": "ddr5-32gb",
+      "name": "32GB DDR5-6000 (2x16GB)",
+      "category": "ram",
+      "tier": "mid",
+      "use_cases": [
+        "general",
+        "ai-host",
+        "gaming"
+      ],
+      "vram_gb": null,
+      "price_usd": 110,
+      "price_usd_per_hour": null,
+      "price_inr": 9350,
+      "price_live": false,
+      "source": "hardware_catalog.json"
+    },
+    {
+      "type": "catalog",
+      "id": "ddr5-64gb",
+      "name": "64GB DDR5-6000 (2x32GB)",
+      "category": "ram",
+      "tier": "high",
+      "use_cases": [
+        "ai-host",
+        "data-preprocessing",
+        "large-models-cpu-offload"
+      ],
+      "vram_gb": null,
+      "price_usd": 210,
+      "price_usd_per_hour": null,
+      "price_inr": 17850,
+      "price_live": false,
+      "source": "hardware_catalog.json"
+    },
+    {
+      "type": "catalog",
+      "id": "psu-750w",
+      "name": "750W 80+ Gold PSU",
+      "category": "psu",
+      "tier": "mid",
+      "use_cases": [
+        "single-gpu-up-to-350w"
+      ],
+      "vram_gb": null,
+      "price_usd": 100,
+      "price_usd_per_hour": null,
+      "price_inr": 8500,
+      "price_live": false,
+      "source": "hardware_catalog.json"
+    },
+    {
+      "type": "catalog",
+      "id": "psu-1000w",
+      "name": "1000W 80+ Gold PSU",
+      "category": "psu",
+      "tier": "high",
+      "use_cases": [
+        "single-gpu-450w-plus",
+        "high-end"
+      ],
+      "vram_gb": null,
+      "price_usd": 170,
+      "price_usd_per_hour": null,
+      "price_inr": 14450,
+      "price_live": false,
+      "source": "hardware_catalog.json"
+    },
+    {
+      "type": "catalog",
+      "id": "cloud-rtx4090-runpod",
+      "name": "RTX 4090 24GB (cloud, RunPod-class)",
+      "category": "cloud-gpu",
+      "tier": "value",
+      "use_cases": [
+        "ai-inference",
+        "fine-tuning",
+        "burst-training"
+      ],
+      "vram_gb": 24,
+      "price_usd": null,
+      "price_usd_per_hour": 0.69,
+      "price_inr": null,
+      "price_live": false,
+      "source": "hardware_catalog.json"
+    },
+    {
+      "type": "catalog",
+      "id": "cloud-a100-80gb",
+      "name": "A100 80GB (cloud)",
+      "category": "cloud-gpu",
+      "tier": "pro",
+      "use_cases": [
+        "fine-tuning",
+        "training",
+        "large-inference"
+      ],
+      "vram_gb": 80,
+      "price_usd": null,
+      "price_usd_per_hour": 1.6,
+      "price_inr": null,
+      "price_live": false,
+      "source": "hardware_catalog.json"
+    },
+    {
+      "type": "catalog",
+      "id": "cloud-h100-80gb",
+      "name": "H100 80GB (cloud)",
+      "category": "cloud-gpu",
+      "tier": "enterprise",
+      "use_cases": [
+        "training",
+        "large-inference",
+        "production"
+      ],
+      "vram_gb": 80,
+      "price_usd": null,
+      "price_usd_per_hour": 2.99,
+      "price_inr": null,
+      "price_live": false,
+      "source": "hardware_catalog.json"
+    },
+    {
+      "type": "knowledge",
+      "source": "budget_tiers.md"
+    },
+    {
+      "type": "knowledge",
+      "source": "budget_tiers.md"
+    },
+    {
+      "type": "knowledge",
+      "source": "budget_tiers.md"
+    },
+    {
+      "type": "knowledge",
+      "source": "budget_tiers.md"
+    },
+    {
+      "type": "knowledge",
+      "source": "compatibility_rules.md"
+    },
+    {
+      "type": "knowledge",
+      "source": "compatibility_rules.md"
+    },
+    {
+      "type": "knowledge",
+      "source": "compatibility_rules.md"
+    },
+    {
+      "type": "knowledge",
+      "source": "compatibility_rules.md"
+    },
+    {
+      "type": "knowledge",
+      "source": "local_vs_cloud.md"
+    },
+    {
+      "type": "knowledge",
+      "source": "local_vs_cloud.md"
+    },
+    {
+      "type": "knowledge",
+      "source": "local_vs_cloud.md"
+    },
+    {
+      "type": "knowledge",
+      "source": "local_vs_cloud.md"
+    },
+    {
+      "type": "knowledge",
+      "source": "vram_requirements.md"
+    },
+    {
+      "type": "knowledge",
+      "source": "vram_requirements.md"
+    },
+    {
+      "type": "knowledge",
+      "source": "vram_requirements.md"
+    },
+    {
+      "type": "knowledge",
+      "source": "vram_requirements.md"
+    }
+  ]
+}

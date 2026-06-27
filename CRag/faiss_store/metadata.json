@@ -1,0 +1,82 @@
+{
+  "0": {
+    "text": "Neural networks learn patterns through backpropagation and gradient descent",
+    "doc_id": 0
+  },
+  "1": {
+    "text": "Random forests combine multiple decision trees for robust predictions",
+    "doc_id": 1
+  },
+  "2": {
+    "text": "Transfer learning fine-tunes pre-trained models on domain-specific data",
+    "doc_id": 2
+  },
+  "3": {
+    "text": "Batch normalization stabilizes training by normalizing layer inputs",
+    "doc_id": 3
+  },
+  "4": {
+    "text": "Dropout randomly deactivates neurons to prevent overfitting",
+    "doc_id": 4
+  },
+  "5": {
+    "text": "RAG retrieves relevant documents before generating a response",
+    "doc_id": 5
+  },
+  "6": {
+    "text": "Vector embeddings capture semantic meaning in dense numerical form",
+    "doc_id": 6
+  },
+  "7": {
+    "text": "Chunking splits large documents into smaller retrievable segments",
+    "doc_id": 7
+  },
+  "8": {
+    "text": "Re-ranking reorders initial retrieval results using cross-encoders",
+    "doc_id": 8
+  },
+  "9": {
+    "text": "Prompt engineering designs effective instructions for language models",
+    "doc_id": 9
+  },
+  "10": {
+    "text": "Kubernetes manages containerized workloads with automatic scaling",
+    "doc_id": 10
+  },
+  "11": {
+    "text": "Docker images package application code with all dependencies",
+    "doc_id": 11
+  },
+  "12": {
+    "text": "CI/CD pipelines automate testing and deployment of code changes",
+    "doc_id": 12
+  },
+  "13": {
+    "text": "Load balancers distribute traffic across multiple server instances",
+    "doc_id": 13
+  },
+  "14": {
+    "text": "Message queues like Kafka decouple producers from consumers",
+    "doc_id": 14
+  },
+  "15": {
+    "text": "Feature engineering creates informative variables from raw data",
+    "doc_id": 15
+  },
+  "16": {
+    "text": "Data pipelines extract transform and load data between systems",
+    "doc_id": 16
+  },
+  "17": {
+    "text": "Time series analysis detects patterns and trends in sequential data",
+    "doc_id": 17
+  },
+  "18": {
+    "text": "Anomaly detection identifies unusual patterns that differ from normal behavior",
+    "doc_id": 18
+  },
+  "19": {
+    "text": "A/B testing compares two variants to determine which performs better",
+    "doc_id": 19
+  }
+}

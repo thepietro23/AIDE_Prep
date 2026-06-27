@@ -1,0 +1,22 @@
+Beginner
+1. Building your first local llm app
+2. Build your first RAG System from scratch
+3. AI Img Generation using Diffusion Models
+4. Build an AI Resume Screener with Python and Llama 3
+
+Intermediate
+1. Build a Multi Document RAG System
+2. Build a real time assistant using rag Lang chain
+3. Build a Visual Question Answering App
+4. Personal AI Data Analyst
+
+Advanced
+1. Agentic RAG Pipeline
+2. Build a Multi Agent System with Lang graph
+3. Build a Multi Agent System using Gemini API
+4. Build an AI Agent to automate your research
+5. Build an AI Agent to Master a Game using Python
+
+Specialization
+1. Build a real time voice AI assistant
+2. Build a diffusion model from scratch

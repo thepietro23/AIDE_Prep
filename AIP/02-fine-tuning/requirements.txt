@@ -1,0 +1,9 @@
+# NOTE: torch is installed SEPARATELY with CUDA support (see README), e.g.:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu124
+transformers            # the model + tokenizer + training utilities
+peft                    # LoRA / QLoRA adapters (parameter-efficient fine-tuning)
+trl                     # SFTTrainer — high-level supervised fine-tuning loop
+datasets                # load + process the Financial PhraseBank dataset
+accelerate              # device/precision handling under the hood
+bitsandbytes            # 4-bit quantization (this is the "Q" in QLoRA)
+scikit-learn            # accuracy / classification metrics for evaluation

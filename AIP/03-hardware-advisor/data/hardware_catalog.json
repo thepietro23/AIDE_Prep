@@ -1,0 +1,257 @@
+{
+  "_meta": {
+    "description": "Structured hardware catalog for the Hardware Advisor RAG. Each item has specs + a SEED price. Live prices are refreshed by price_fetch.py; the seed value is the fallback when a live fetch fails.",
+    "currency_note": "price_usd is the primary number. price_inr is an approximate convenience value (~85 INR / USD). Always treat seed prices as 'verify live'.",
+    "seed_date": "2026-06"
+  },
+
+  "gpus": [
+    {
+      "id": "rtx-3060-12gb",
+      "name": "NVIDIA RTX 3060 12GB",
+      "category": "gpu",
+      "tier": "entry",
+      "use_cases": ["ai-inference-small", "general", "gaming", "learning"],
+      "specs": { "vram_gb": 12, "memory_type": "GDDR6", "tdp_w": 170, "architecture": "Ampere", "cuda": true },
+      "price_usd": 290,
+      "price_inr": 24500,
+      "price_source": "https://www.newegg.com/p/pl?d=rtx+3060+12gb",
+      "price_updated": "2026-06 (seed)",
+      "good_for": "Cheapest sane entry into local AI. Runs 7B LLMs in 4-bit, Stable Diffusion, learning. CUDA works everywhere.",
+      "watch_out": "12GB caps you at ~7B models and small fine-tunes. No headroom for 13B+."
+    },
+    {
+      "id": "rtx-4060ti-16gb",
+      "name": "NVIDIA RTX 4060 Ti 16GB",
+      "category": "gpu",
+      "tier": "budget",
+      "use_cases": ["ai-inference", "fine-tuning-small", "general", "gaming"],
+      "specs": { "vram_gb": 16, "memory_type": "GDDR6", "tdp_w": 165, "architecture": "Ada Lovelace", "cuda": true },
+      "price_usd": 400,
+      "price_inr": 34000,
+      "price_source": "https://www.newegg.com/p/pl?d=rtx+4060+ti+16gb",
+      "price_updated": "2026-06 (seed)",
+      "good_for": "Best value NEW card for small local AI in 2026. 16GB runs 7B at FP16 / 13B in 4-bit, low power.",
+      "watch_out": "Narrow 128-bit memory bus -> slower than its number suggests for big batches."
+    },
+    {
+      "id": "rtx-3090-24gb-used",
+      "name": "NVIDIA RTX 3090 24GB (used)",
+      "category": "gpu",
+      "tier": "value-king",
+      "use_cases": ["ai-inference", "fine-tuning", "general", "gaming"],
+      "specs": { "vram_gb": 24, "memory_type": "GDDR6X", "tdp_w": 350, "architecture": "Ampere", "cuda": true },
+      "price_usd": 700,
+      "price_inr": 59500,
+      "price_source": "https://www.ebay.com/sch/i.html?_nkw=rtx+3090+24gb",
+      "price_updated": "2026-06 (seed)",
+      "good_for": "The value king of local AI in 2026: 24GB VRAM for ~$700 used. Runs 13B at FP16, 34B in 4-bit, QLoRA fine-tuning.",
+      "watch_out": "Used -> check warranty/condition. High 350W power draw, needs a strong PSU (750W+)."
+    },
+    {
+      "id": "rtx-4090-24gb",
+      "name": "NVIDIA RTX 4090 24GB",
+      "category": "gpu",
+      "tier": "high",
+      "use_cases": ["ai-inference", "fine-tuning", "training-small", "general", "gaming"],
+      "specs": { "vram_gb": 24, "memory_type": "GDDR6X", "tdp_w": 450, "architecture": "Ada Lovelace", "cuda": true },
+      "price_usd": 1700,
+      "price_inr": 144500,
+      "price_source": "https://www.newegg.com/p/pl?d=rtx+4090",
+      "price_updated": "2026-06 (seed)",
+      "good_for": "Fastest 24GB consumer card. Same VRAM as 3090 but much faster compute -> serious fine-tuning + fast inference.",
+      "watch_out": "Expensive and power-hungry (450W). If you only need the VRAM, a used 3090 is far cheaper."
+    },
+    {
+      "id": "rtx-5090-32gb",
+      "name": "NVIDIA RTX 5090 32GB",
+      "category": "gpu",
+      "tier": "flagship",
+      "use_cases": ["ai-inference", "fine-tuning", "training-small", "general", "gaming"],
+      "specs": { "vram_gb": 32, "memory_type": "GDDR7", "tdp_w": 575, "architecture": "Blackwell", "cuda": true },
+      "price_usd": 2200,
+      "price_inr": 187000,
+      "price_source": "https://www.newegg.com/p/pl?d=rtx+5090",
+      "price_updated": "2026-06 (seed)",
+      "good_for": "Best consumer GPU for AI in 2026. 32GB GDDR7 runs 7B at full FP16, QLoRA on 13B-34B, all Stable Diffusion/ComfyUI.",
+      "watch_out": "575W TDP needs an 1000W+ PSU and good cooling. Premium price."
+    },
+    {
+      "id": "h100-80gb",
+      "name": "NVIDIA H100 80GB (enterprise)",
+      "category": "gpu",
+      "tier": "enterprise",
+      "use_cases": ["training", "large-inference", "production"],
+      "specs": { "vram_gb": 80, "memory_type": "HBM3", "tdp_w": 700, "architecture": "Hopper", "cuda": true },
+      "price_usd": 28000,
+      "price_inr": 2380000,
+      "price_source": "https://www.thinkmate.com/systems/servers/gpx",
+      "price_updated": "2026-06 (seed)",
+      "good_for": "Production-standard data-center GPU for large-scale training/inference. 80GB HBM3.",
+      "watch_out": "Buying makes sense only at scale. For most projects, RENT it on the cloud instead (see cloud options)."
+    },
+    {
+      "id": "b200-enterprise",
+      "name": "NVIDIA B200 (Blackwell, enterprise)",
+      "category": "gpu",
+      "tier": "enterprise",
+      "use_cases": ["training", "large-inference", "production", "long-context"],
+      "specs": { "vram_gb": 192, "memory_type": "HBM3e", "tdp_w": 1000, "architecture": "Blackwell", "cuda": true },
+      "price_usd": 40000,
+      "price_inr": 3400000,
+      "price_source": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+      "price_updated": "2026-06 (seed)",
+      "good_for": "Newest Blackwell data-center GPU, tuned for LLM training + long-context. Best raw performance available.",
+      "watch_out": "Enterprise-only, extreme cost + power. Rent via cloud unless you run a data center."
+    }
+  ],
+
+  "cpus": [
+    {
+      "id": "ryzen5-7600",
+      "name": "AMD Ryzen 5 7600",
+      "category": "cpu",
+      "tier": "budget",
+      "use_cases": ["general", "ai-host", "gaming"],
+      "specs": { "cores": 6, "threads": 12, "socket": "AM5", "tdp_w": 65 },
+      "price_usd": 200,
+      "price_inr": 17000,
+      "price_source": "https://www.newegg.com/p/pl?d=ryzen+5+7600",
+      "price_updated": "2026-06 (seed)",
+      "good_for": "Plenty for feeding a single GPU in an AI/dev box, and for general use + gaming. Low power.",
+      "watch_out": "6 cores is light for heavy CPU data-preprocessing or multi-GPU rigs."
+    },
+    {
+      "id": "ryzen7-7700x",
+      "name": "AMD Ryzen 7 7700X",
+      "category": "cpu",
+      "tier": "mid",
+      "use_cases": ["general", "ai-host", "content-creation", "gaming"],
+      "specs": { "cores": 8, "threads": 16, "socket": "AM5", "tdp_w": 105 },
+      "price_usd": 300,
+      "price_inr": 25500,
+      "price_source": "https://www.newegg.com/p/pl?d=ryzen+7+7700x",
+      "price_updated": "2026-06 (seed)",
+      "good_for": "Sweet spot for a serious AI workstation: enough cores for data prep + dataloading without bottlenecking the GPU.",
+      "watch_out": "Overkill for a pure inference box where the GPU does everything."
+    },
+    {
+      "id": "ryzen9-7950x",
+      "name": "AMD Ryzen 9 7950X",
+      "category": "cpu",
+      "tier": "high",
+      "use_cases": ["general", "ai-host", "data-preprocessing", "multi-gpu"],
+      "specs": { "cores": 16, "threads": 32, "socket": "AM5", "tdp_w": 170 },
+      "price_usd": 550,
+      "price_inr": 46750,
+      "price_source": "https://www.newegg.com/p/pl?d=ryzen+9+7950x",
+      "price_updated": "2026-06 (seed)",
+      "good_for": "Heavy CPU preprocessing, multi-GPU feeding, video work. 16 cores chew through dataloaders.",
+      "watch_out": "Expensive + hot. Single-GPU inference rigs won't use all these cores."
+    }
+  ],
+
+  "ram": [
+    {
+      "id": "ddr5-32gb",
+      "name": "32GB DDR5-6000 (2x16GB)",
+      "category": "ram",
+      "tier": "mid",
+      "use_cases": ["general", "ai-host", "gaming"],
+      "specs": { "capacity_gb": 32, "type": "DDR5", "speed": 6000 },
+      "price_usd": 110,
+      "price_inr": 9350,
+      "price_source": "https://www.newegg.com/p/pl?d=32gb+ddr5+6000",
+      "price_updated": "2026-06 (seed)",
+      "good_for": "Baseline for an AI workstation. Rule of thumb: system RAM >= 2x your GPU VRAM.",
+      "watch_out": "If you load big datasets in RAM or run CPU-offload for huge models, jump to 64GB+."
+    },
+    {
+      "id": "ddr5-64gb",
+      "name": "64GB DDR5-6000 (2x32GB)",
+      "category": "ram",
+      "tier": "high",
+      "use_cases": ["ai-host", "data-preprocessing", "large-models-cpu-offload"],
+      "specs": { "capacity_gb": 64, "type": "DDR5", "speed": 6000 },
+      "price_usd": 210,
+      "price_inr": 17850,
+      "price_source": "https://www.newegg.com/p/pl?d=64gb+ddr5+6000",
+      "price_updated": "2026-06 (seed)",
+      "good_for": "For 24GB+ GPUs, big datasets, or running large models partly on CPU (offload). Comfortable headroom.",
+      "watch_out": "Diminishing returns for pure inference unless you offload to CPU."
+    }
+  ],
+
+  "psu": [
+    {
+      "id": "psu-750w",
+      "name": "750W 80+ Gold PSU",
+      "category": "psu",
+      "tier": "mid",
+      "use_cases": ["single-gpu-up-to-350w"],
+      "specs": { "watts": 750, "rating": "80+ Gold" },
+      "price_usd": 100,
+      "price_inr": 8500,
+      "price_source": "https://www.newegg.com/p/pl?d=750w+80+gold+psu",
+      "price_updated": "2026-06 (seed)",
+      "good_for": "Enough for a single 3090/4080-class GPU (<=350W) + a mid CPU. Headroom rule: PSU >= 1.5x total component draw.",
+      "watch_out": "Not enough for a 4090 (450W) or 5090 (575W) build."
+    },
+    {
+      "id": "psu-1000w",
+      "name": "1000W 80+ Gold PSU",
+      "category": "psu",
+      "tier": "high",
+      "use_cases": ["single-gpu-450w-plus", "high-end"],
+      "specs": { "watts": 1000, "rating": "80+ Gold" },
+      "price_usd": 170,
+      "price_inr": 14450,
+      "price_source": "https://www.newegg.com/p/pl?d=1000w+80+gold+psu",
+      "price_updated": "2026-06 (seed)",
+      "good_for": "Required for RTX 4090 (450W) or 5090 (575W) builds with headroom. Safe for one big GPU + strong CPU.",
+      "watch_out": "Overkill (wasted money) for an entry/budget single-GPU build."
+    }
+  ],
+
+  "cloud_gpus": [
+    {
+      "id": "cloud-rtx4090-runpod",
+      "name": "RTX 4090 24GB (cloud, RunPod-class)",
+      "category": "cloud-gpu",
+      "tier": "value",
+      "use_cases": ["ai-inference", "fine-tuning", "burst-training"],
+      "specs": { "vram_gb": 24, "provider_class": "community-cloud" },
+      "price_usd_per_hour": 0.69,
+      "price_source": "https://www.runpod.io/pricing",
+      "price_updated": "2026-06 (seed)",
+      "good_for": "Rent a 4090 by the hour. Great when you need power occasionally and don't want to buy. ~$0.69/hr.",
+      "watch_out": "If you run >~8 hrs/day every day, buying may beat renting within months. Do the math (see local_vs_cloud)."
+    },
+    {
+      "id": "cloud-a100-80gb",
+      "name": "A100 80GB (cloud)",
+      "category": "cloud-gpu",
+      "tier": "pro",
+      "use_cases": ["fine-tuning", "training", "large-inference"],
+      "specs": { "vram_gb": 80, "provider_class": "secure-cloud" },
+      "price_usd_per_hour": 1.6,
+      "price_source": "https://www.runpod.io/pricing",
+      "price_updated": "2026-06 (seed)",
+      "good_for": "80GB for big fine-tunes / mid training without owning data-center hardware. ~$1.6/hr.",
+      "watch_out": "Costs add up fast for long runs. Use spot/community pricing and checkpoint often."
+    },
+    {
+      "id": "cloud-h100-80gb",
+      "name": "H100 80GB (cloud)",
+      "category": "cloud-gpu",
+      "tier": "enterprise",
+      "use_cases": ["training", "large-inference", "production"],
+      "specs": { "vram_gb": 80, "provider_class": "secure-cloud" },
+      "price_usd_per_hour": 2.99,
+      "price_source": "https://www.runpod.io/pricing",
+      "price_updated": "2026-06 (seed)",
+      "good_for": "Production-grade training power on demand. ~$2.99/hr. The sane way to touch H100s for most teams.",
+      "watch_out": "Expensive for idle time. Only spin up for active training; tear down immediately after."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+ML Pipeline Anatomy
+
+Raw Data 
+   ↓
+Data Cleaning & Feature Engineering 
+   ↓
+Train/Test Split 
+   ↓
+Model Training (e.g., LogisticRegression) 
+   ↓
+Evaluation (Accuracy, ROC‑AUC, etc.) 
+   ↓
+(Optionally) Packaging/Serving
+
+
+
+Q> Why a pipeline?
+
+Reproducibility: you can run the exact same steps.
+
+Clean code: no “ad‑hoc” transforms scattered around.
+
+Easy hyperparameter search: swap in/out steps.

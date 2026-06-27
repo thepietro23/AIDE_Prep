@@ -1,0 +1,7 @@
+sentence-transformers   # text -> embeddings (vectors). Local + free.
+faiss-cpu               # vector database / similarity search (Facebook AI)
+numpy                   # arrays/math (for handling embeddings)
+python-dotenv           # load secrets (GROQ_API_KEY) from .env
+groq                    # official Groq cloud LLM client (fast, free tier)
+requests                # to call Ollama's local HTTP API
+streamlit               # chat web UI

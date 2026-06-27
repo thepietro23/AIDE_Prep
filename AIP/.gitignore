@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# Secrets
+.env
+
+# Vector DB (regenerate via `python app.py ingest`)
+**/chroma_db/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model cache (sentence-transformers downloads here)
+.cache/

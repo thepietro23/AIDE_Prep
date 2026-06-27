@@ -1,0 +1,25 @@
+A neuron is the fundamental computational unit of a neural network that receives inputs, applies weights and bias, and generates an output.
+
+A perceptron is a single artificial neuron that takes inputs, applies weights and bias, and produces an output for simple classification tasks.
+Single perceptron = basic neuron
+Multiple perceptrons connected together = neural network
+
+Weights
+Weights are trainable parameters in a neural network that determine how much influence each input has on the output.
+Weights control how strongly an input affects the output. Larger weights mean the input is more important for prediction.
+Weights are initially random. During training, the model compares prediction with actual output, calculates error, and updates weights to reduce that error. Important inputs get higher weights.
+Weights are initialized randomly because initially the model has no knowledge about input importance. During training, the model updates these random weights based on error to learn meaningful patterns.
+
+Bias
+Bias is an additional parameter added to the weighted sum that helps the model shift the output and improve flexibility.
+Bias shifts the output so the model can fit real-world data more flexibly. Without bias, the model becomes too restricted because outputs must pass through zero.
+
+Perceptron
+A perceptron is a single artificial neuron that takes inputs, applies weights and bias, and produces an output for simple classification tasks.
+
+Parameter
+Parameters are the learnable values of a model that are adjusted during training.
+Parameters are internal learnable variables like weights and bias that the model updates during training to improve predictions.
+Neural network me mainly:
+Weights
+Bias
