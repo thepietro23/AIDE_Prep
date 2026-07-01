@@ -5,7 +5,7 @@ This repo holds two separate projects, kept apart so the two concepts stay clear
 | Folder | Topic | Status |
 |--------|-------|--------|
 | [`01-rag/`](01-rag/) | Retrieval-Augmented Generation (RAG) | ✅ Working |
-| [`02-fine-tuning/`](02-fine-tuning/) | Model fine-tuning | 🔜 Later |
+| [`02-fine-tuning/`](02-fine-tuning/) | Model fine-tuning (QLoRA, financial sentiment) | ✅ Working |
 
 ## RAG vs Fine-tuning — in one line
 

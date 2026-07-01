@@ -7,12 +7,24 @@ Project: fine-tune a small LLM (QLoRA) to classify the sentiment of a
 financial tweet/headline as bearish / bullish / neutral.
 """
 
+import os
 import pathlib
+
+# The model + dataset are already cached locally. Skip HuggingFace's network
+# check on load (on a flaky/proxied network it can hang for minutes).
+os.environ.setdefault("HF_HUB_OFFLINE", "1")
+os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
+os.environ.setdefault("HF_DATASETS_OFFLINE", "1")
+
+# On Windows, torch (MKL) + sklearn/datasets can load two OpenMP runtimes and
+# hard-crash (exit 139). This is the standard, safe workaround.
+os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
 
 # ---- Base model ----------------------------------------------------------
 # A small instruct model so it fits a 4GB GPU. Start small (0.5B) to get the
 # whole pipeline working fast; you can later try Qwen2.5-1.5B-Instruct.
-BASE_MODEL = "Qwen/Qwen2.5-0.5B-Instruct"
+# Downloaded locally (via curl/truststore) to dodge corporate-proxy HF issues.
+BASE_MODEL = str(pathlib.Path(__file__).parent / "models" / "Qwen2.5-0.5B-Instruct")
 
 # ---- Dataset -------------------------------------------------------------
 DATASET = "zeroshot/twitter-financial-news-sentiment"

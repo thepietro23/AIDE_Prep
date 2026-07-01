@@ -2,39 +2,41 @@
 baseline.py
 -----------
 Measure the base model's accuracy on financial sentiment BEFORE fine-tuning.
-This is the "before" number we compare against later.
+
+IMPORTANT (Windows): we build the dataset FIRST and import torch only AFTER,
+because pyarrow dataset ops crash if torch's threading is initialized first.
 """
 
-import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
-from sklearn.metrics import accuracy_score, classification_report
-
-import config
+import config   # FIRST: sets HF offline env before anything loads
 from prepare_data import build_datasets
-from infer import predict_labels
 
 
 def main():
-    # 1. Load the base model + tokenizer (fp16 on GPU; 0.5B fits easily)
+    # 1. Build the dataset BEFORE importing torch (avoids the pyarrow/torch crash)
+    _, test = build_datasets()
+    test = test[:config.EVAL_SAMPLES]
+    prompts = [r["prompt"] for r in test]
+    gold = [r["label_word"] for r in test]
+
+    # 2. NOW import torch and load the model
+    import torch
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+    from infer import predict_labels
+
     print(f"Loading base model: {config.BASE_MODEL}")
     tokenizer = AutoTokenizer.from_pretrained(config.BASE_MODEL)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
-    tokenizer.padding_side = "left"          # correct side for generation
+    tokenizer.padding_side = "left"
     model = AutoModelForCausalLM.from_pretrained(
         config.BASE_MODEL, dtype=torch.float16, device_map="cuda"
     )
-
-    # 2. Take a sample of the test set (full set is slow on a laptop GPU)
-    _, test_ds = build_datasets()
-    test_ds = test_ds.select(range(config.EVAL_SAMPLES))
-    prompts = test_ds["prompt"]
-    gold = test_ds["label_word"]
 
     # 3. Predict + score
     print(f"Evaluating base model on {len(prompts)} examples...")
     preds = predict_labels(model, tokenizer, prompts)
 
+    from sklearn.metrics import accuracy_score, classification_report
     acc = accuracy_score(gold, preds)
     print(f"\n=== BASELINE (no fine-tuning) ===")
     print(f"Accuracy: {acc:.3f}")
