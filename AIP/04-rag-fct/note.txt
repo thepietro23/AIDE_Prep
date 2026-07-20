@@ -1,0 +1,19 @@
+company-rag/
+│
+├── app/
+│   ├── models/
+│   │      document.py
+│   │
+│   ├── loaders/
+│   │      base_loader.py
+│   │      website_loader.py
+│   │
+│   └── utils/
+│
+├── data/
+│
+├── main.py
+│
+├── requirements.txt
+│
+└── .env
